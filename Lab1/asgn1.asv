@@ -1,0 +1,12 @@
+%q1
+x = linspace(1,100);
+y = x(2:2:end);
+
+%q2
+row = 0;
+col = 0;
+for t = 0.0:.1:0.4
+    for f =[10, 15, 20]
+        
+    end
+end
