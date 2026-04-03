@@ -55,7 +55,30 @@ hold on
 plot(t, s2);
 hold on
 plot(t, s3);
-ylabel('s (1, 2, 3)');
+ylabel('s1, s2, s3');
 xlabel('t');
-
+legend('s1 = sin(2 * pi * f1 * t)','s2 = sin((2 * pi * f2 * t) + 0.4)', 's3 = s1 + s2');
 hold off
+
+%q6
+
+function z = MySinc(x)
+    if x == 0
+        z = 1;
+    else
+        z = sin(x)/x;
+    end
+end
+
+figure(2);
+x=linspace(-2*pi, 2*pi);
+y=MySinc(x);
+y2=sinc(x);
+plot(x, y,  "r:");
+hold on
+plot(x, y2);
+xlabel('x');
+ylabel('sinc');
+legend('MySinc', 'matlab sinc')
+hold off
+
