@@ -1,0 +1,30 @@
+R = 2;
+C = 1;
+L = 0.5;
+
+syms h(t);
+
+
+%eqn = R*C*diff(h,t,2) + diff(h,t) + (R/L)*h == 1;
+h_0=dsolve('R*C*D2hz+Dhz+(R/L)*hz=0','hz(0)=0','Dhz(0)=1','t');
+
+h = diff(h_0);
+disp(['impulse response h(t) = (',char(h),')u(t)']);
+
+
+
+%% diff eq of system: D2y+ 3Dy+ 2y= Dx, with BC y(0)=0 and vc(0)=5
+% close all
+% clear all
+clc
+%% impulse response: x=detla(t), B.C. y(0)=0, Dy(0)=1
+y_n=dsolve('R*C*D2y+Dy+(R/y=0','y(0)=0','Dy(0)=1','t');
+h=diff(y_n);
+disp(['impulse response h(t) = (',char(h),')u(t)']);
+%%
+h=@(t) (2*exp(-2*t)-exp(-t)).*(t>=0);
+t=-1:0.01:5;
+figure(2)
+plot(t,h(t))
+xlabel('time')
+ylabel('impulse respons h(t)')

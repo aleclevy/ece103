@@ -1,0 +1,29 @@
+%q3
+
+% 3. A single-tone signal w(t) = sin(400πt) is transmitted to an audio amplifier and speaker to 
+% produce a high-temperature warning for a silicon crystal-growing factory. 
+% A filter having impulse response h(t) = 400e−200t cos(400 πt)u(t) has been designed
+% to reduce additive interference in the received signal. Using Matlab in-built convolution
+% function: conv(), find the filter output signal y(t), when the received signal is
+% x(t) = [cos(100πt) + sin(400πt) − cos(800πt)]u(t) ( signal w(t) was
+% corrupted by interference and resulted in an input signal x(t)). Plot the output signal,
+% the input signal, and w(t) for the range of −0.1 ≤ t ≤ 0.1 . Comment on the effect
+% of the filter on the signal. While solving this problem, pay attention to the time
+% resolution/step (dT) you need to use.
+
+t = -0.1:0.0001:0.1; % Time vector with appropriate resolution
+w = sin(400 * pi * t) .* (t >= 0); % Single-tone signal w(t)
+x = (cos(100 * pi * t) + sin(400 * pi * t) - cos(800 * pi * t)) .* (t >= 0); % Received signal x(t)
+h = 400 * exp(-200 * t) .* cos(400 * pi * t) .* (t >= 0); % Impulse response h(t)
+
+y1 = conv(h, x) * 0.0001;
+
+y = y1(1: length(t));
+figure
+plot(t, y);
+hold on
+figure
+plot(t, w);
+hold on
+figure
+plot()
